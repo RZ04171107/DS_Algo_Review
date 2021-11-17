@@ -95,17 +95,100 @@ class SinglyLinkedList {
     //console.log(pointerNode);
     return pointerNode;
   }
+
+  set(index, value) {
+    // change the value of a node based on it's position in the linked list
+    var foundNode = this.get(index);
+    if (!foundNode) {
+      return false;
+    }
+    foundNode.val = value;
+    return true;
+  }
+
+  insert(index, value) {
+    // add a node to the linked list at a specific position
+    if (index < 0 || index > this.length) {
+      return false;
+    }
+    if (index === this.length) {
+      this.push(value);
+      return true;
+    }
+    if (index === 0) {
+      this.unshift(value);
+      return true;
+    }
+    var preNode = this.get(index - 1);
+    var newNode = new Node(value);
+    newNode.next = preNode.next;
+    preNode.next = newNode;
+    this.length++;
+    return true;
+  }
+
+  remove(index) {
+    // remove a node from the linked list at a specific position
+    if (index < 0 || index >= this.length) return undefined;
+    if (index === 0) {
+      //if remove the first node
+      return this.shift();
+    }
+    if (index === this.length - 1) {
+      // if remove the tail
+      return this.pop();
+    }
+    var preNode = this.get(index - 1);
+    var removed = preNode.next;
+    preNode.next = removed.next;
+    this.length--;
+    return removed;
+  }
+
+  print() {
+    var arr = [];
+    var current = this.head;
+    while (current) {
+      arr.push(current.val);
+      current = current.next;
+    }
+    console.log(arr);
+  }
+
+  reverse() {
+    //a common interview question
+    // swap the head and the tail
+    var t = this.tail;
+    this.tail = this.head;
+    this.head = t;
+    // some variables
+    var prevNode = null;
+    var nextNode = null;
+    var current = this.tail;
+    // loop through the list
+    while (current) {
+      nextNode = current.next; // set next to be the next property on whatever node is
+      if (prevNode) {
+        current.next = prevNode; // set the next property on the node to be whatever prev is
+      } else {
+        current.next = null;
+      }
+      // set prev to be the value of the node variable
+      prevNode = current;
+      // set the node variable to be the value of the next variable
+      current = nextNode;
+    }
+    this.print();
+  }
 }
 
 var list = new SinglyLinkedList();
-list.push('Hello');
-list.push('world');
-list.push('goodbye');
-list.push(':)');
-//list.traverse();
-// list.shift();
-// list.unshift('@@');
-//list.traverse();
+list.push('Hello 0');
+list.push('world 1');
+list.push('goodbye 2');
+list.push('meow 3');
+list.push(':)  4');
+
+list.reverse();
 //console.log(list);
-list.get(1);
-console.log(list.get(3));
+//list.traverse();
