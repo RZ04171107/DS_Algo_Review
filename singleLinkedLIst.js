@@ -179,6 +179,7 @@ class SinglyLinkedList {
       current = nextNode;
     }
     this.print();
+    return this;
   }
 }
 
