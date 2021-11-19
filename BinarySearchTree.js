@@ -93,6 +93,48 @@ class BST {
     }
     return false;
   }
+
+  // BFS: Breadth First Search
+  // create a queue(this can be an array) and a variable to store the values of nodes visited
+  // place the root node in the queue
+  // loop as long as there is anything in the queue
+  //  * dequeue a node from the queue and push the value of the node into the variable that stores the nodes
+  //  * if there is a left property on the node dequeued - add it to the queue
+  //  * if there is a right property on the node dequeued = add it to the queue
+  BreadthFirstSearch() {
+    var fakeQueue = []; //push for enqueue, shift for dequeue
+    var visited = [];
+    fakeQueue.push(this.root);
+
+    // Iteratively
+    // while (fakeQueue.length > 0) {
+    //   var node = fakeQueue.shift();
+    //   visited.push(node.value);
+    //   if (node.left) {
+    //     fakeQueue.push(node.left);
+    //   }
+    //   if (node.right) {
+    //     fakeQueue.push(node.right);
+    //   }
+    // }
+
+    // recursion:
+    function recursionHelper(fakeQueue) {
+      if (fakeQueue.length === 0) return; //base case
+      var node = fakeQueue.shift();
+      visited.push(node.value);
+      if (node.left) {
+        fakeQueue.push(node.left);
+      }
+      if (node.right) {
+        fakeQueue.push(node.right);
+      }
+      recursionHelper(fakeQueue);
+    }
+    recursionHelper(fakeQueue);
+
+    return visited;
+  }
 }
 
 var tree = new BST();
@@ -106,5 +148,4 @@ tree.insert(2);
 tree.insert(7);
 tree.insert(11);
 tree.insert(16);
-console.log(tree.search(5));
-console.log(tree.contains(17));
+console.log(tree.BreadthFirstSearch());
