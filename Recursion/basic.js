@@ -45,6 +45,11 @@ function collectOddValues(arr) {
 }
 
 // Pure Recursion
+// pure recursion tips:
+// for arrays:use slice, the spread operator, concat to make copies of arrays so you do not mutate them
+// strings are immutable so need to use methods like slice, substr, or substring to make copies of strings
+// to make copies of objects: use Object.assign, or the spread operator
+
 function collectOddValues_pure(arr) {
   let newArr = [];
   if (arr.length === 0) {
