@@ -132,9 +132,54 @@ class BST {
       recursionHelper(fakeQueue);
     }
     recursionHelper(fakeQueue);
-
     return visited;
   }
+
+  DFSPreOrder() {
+    // create a variable to store the values of nodes visited
+    // store the root of the BST in a variable called current
+    var visited = [];
+    // write a helper function which accepts a node
+    //   * push the value of the node to the variable that stores the value
+    //   * if the node has a left property, call the helper function with the left property on the node
+    //   * if the node has a right property, call the helper function with the right property on the node
+    function traverse(node) {
+      visited.push(node.value);
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+    }
+    traverse(this.root);
+    return visited;
+  }
+
+  DFSPostOrder() {
+    // left side -> righ side -> node
+
+    var visited = [];
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+      visited.push(node.value);
+    }
+    traverse(this.root);
+    return visited;
+  }
+
+  DFSInOrder() {
+    //left -> node(middle) -> right
+    var visited = [];
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      visited.push(node.value);
+      if (node.right) traverse(node.right);
+    }
+    traverse(this.root);
+    return visited;
+  }
+
+  // DFS - InOrder
+  // used commonly with BST's
+  // Notice we get all nodes in the tree in their underlying order
 }
 
 var tree = new BST();
@@ -148,4 +193,7 @@ tree.insert(2);
 tree.insert(7);
 tree.insert(11);
 tree.insert(16);
-console.log(tree.BreadthFirstSearch());
+console.log('BFS:', tree.BreadthFirstSearch());
+console.log('DFS Pre:', tree.DFSPreOrder());
+console.log('DFS Post:', tree.DFSPostOrder());
+console.log('DFS In:', tree.DFSInOrder());
