@@ -54,15 +54,11 @@ class MaxBinaryHeap {
       if (leftIdx >= this.values.length && rightIdx >= this.values.length) {
         // child indexes out of bound, which means do not have any child
         return;
-      } else if ((leftIdx = this.values.length - 1)) {
-        //only have left child
-        largerChildIdx = leftIdx;
-      } else {
-        // other ragular cases:
-        this.values[leftIdx] > this.values[rightIdx]
-          ? (largerChildIdx = leftIdx)
-          : (largerChildIdx = rightIdx);
       }
+      // other ragular cases:
+      this.values[leftIdx] > this.values[rightIdx]
+        ? (largerChildIdx = leftIdx)
+        : (largerChildIdx = rightIdx);
 
       if (this.values[idx] < this.values[largerChildIdx]) {
         [this.values[idx], this.values[largerChildIdx]] = [
