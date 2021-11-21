@@ -93,6 +93,10 @@ class MaxBinaryHeap {
     return max;
   }
 }
+// Big O of Binary Heaps
+// Insertion - O(log n)
+// Removal - O(log n)
+// Search - O(n)
 
 var heap = new MaxBinaryHeap();
 heap.insert(41);
