@@ -15,7 +15,7 @@ function linearSearch(value, array) {
 function binarySearch(value, array) {
   var left = 0;
   var right = array.length - 1;
-  while (left < right) {
+  while (left <= right) {
     var middle = Math.floor((left + right) / 2);
     if (array[middle] === value) return middle;
     if (array[middle] < value) left = middle + 1;
